@@ -3,11 +3,13 @@
 // const contract = new ethers.Contract(`address`, `abi`, `provider`);
 
 import { ethers } from "ethers";
+import { config } from 'dotenv'
+config()
 
-// 利用Alchemy的rpc节点连接以太坊网络
-// 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+let ALCHEMY_KEY_m = process.env.ALCHEMY_KEY_m || ''
+
+const provider = new ethers.JsonRpcProvider(ALCHEMY_KEY_m)
+
 
 // 第1种输入abi的方式: 复制abi全文
 // WETH的abi可以在这里复制：https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#code

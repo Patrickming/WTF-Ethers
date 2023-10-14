@@ -1,16 +1,20 @@
 // 导入ethers包
 import { ethers } from "ethers";
-// playcode免费版不能安装ethers，用这条命令，需要从网络上import包（把上面这行注释掉）
-// import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.6.9.esm.min.js";
 
-// 利用Alchemy的rpc节点连接以太坊网络
-// 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
+
+// // 利用Alchemy的rpc节点连接以太坊网络
+// // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+// const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
+// const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
+import { config } from 'dotenv'
+config()
+
+let INFURA_KEY_m = process.env.INFURA_KEY_m || ''
+let INFURA_KEY_g = process.env.INFURA_KEY_g || ''
 // 连接以太坊主网
-const providerETH = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL)
+const providerETH = new ethers.JsonRpcProvider(INFURA_KEY_m)
 // 连接Goerli测试网
-const providerGoerli = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL)
+const providerGoerli = new ethers.JsonRpcProvider(INFURA_KEY_g)
 
 const main = async () => {
     // 利用provider读取链上信息
